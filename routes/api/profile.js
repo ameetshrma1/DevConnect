@@ -7,6 +7,18 @@ const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 const request = require("request");
 const config = require("config");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./client/public/uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 //@routes GET api/profile/me
 // desc Get current Users Profille
@@ -37,6 +49,7 @@ router.get("/me", auth, async (req, res) => {
 router.post(
   "/",
   [
+    upload.single("avatar"),
     auth,
     [
       check("status", "Status is required").not().isEmpty(),
@@ -64,11 +77,14 @@ router.post(
       linkedin,
     } = req.body;
 
+    const { avatar } = req.file.avatar;
+
     //Build profile object
     const profileFields = {};
 
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
+    if (avatar) profileFields.avatar = avatar;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
@@ -135,7 +151,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
-    }).populate("user", ["name", "avatar"]);
+    }).populate("user", ["name"]);
 
     if (!profile) return res.status(400).json({ msg: "Profile Not Found." });
 
