@@ -8,4 +8,10 @@ export const setAlert = (msg: any, alertType: any) => (dispatch: any) => {
     type: SET_ALERT,
     payload: { msg, alertType, id },
   });
+  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), 5000);
+};
+
+export const cancelAlert = (id: any) => (dispatch: any) => {
+  console.log("CANCELALERT RUNS");
+  dispatch({ type: REMOVE_ALERT, payload: id });
 };
