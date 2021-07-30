@@ -487,6 +487,22 @@ button {
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
+nav.navbar.bg-dark {
+  background-color: #285c81;
+}
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  display: block;
+  width: 60%;
+  padding: 14px 16px;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
 
 /* Mobile Styles */
 @media (max-width: 700px) {
@@ -573,5 +589,21 @@ button {
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+  nav.navbar.bg-dark {
+    background-color: #285c81;
+  }
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"],
+  .form input[type="date"],
+  .form select,
+  .form textarea {
+    display: block;
+    width: 60%;
+    padding: 6px 0px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
   }
 }
