@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
 import PropTypes from "prop-types";
 
@@ -13,7 +14,7 @@ interface IFormdata {
   password2: string;
 }
 
-const Register = ({ setAlert }: any) => {
+const Register = ({ setAlert, register }: any) => {
   const initialData: IFormdata = {
     name: "",
     email: "",
@@ -33,7 +34,7 @@ const Register = ({ setAlert }: any) => {
     if (password !== password2) {
       setAlert("Password Do not Match", "danger");
     } else {
-      console.log("SUCCESS");
+      register({ name, email, password });
     }
   };
 
@@ -98,6 +99,7 @@ const Register = ({ setAlert }: any) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
