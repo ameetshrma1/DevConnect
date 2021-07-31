@@ -510,7 +510,7 @@ nav.navbar.bg-dark {
 }
 
 /* Mobile Styles */
-@media (max-width: 700px) {
+@media (max-width: 500px) {
   .container {
     margin-top: 8rem;
   }
@@ -723,7 +723,7 @@ button.mybtn {
   margin: auto;
   overflow: hidden;
   padding: 0 1rem;
-  margin-top: 6rem;
+  margin-top: 4rem;
   margin-bottom: 3rem;
   margin-left: 2rem;
 }
