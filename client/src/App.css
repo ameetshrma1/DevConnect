@@ -137,7 +137,6 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-  background-color: none !important;
 }
 
 .badge {
@@ -148,15 +147,18 @@ img {
   background: var(--light-color);
   color: #333;
 }
-
+/* managed to shift the position and altered the size of the alert tab*/
 .alert {
+  display: flex;
+  justify-content: flex-end;
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
-  margin-left: 330px;
+  margin-left: 70%;
   border-radius: 50px;
+  justify-content: space-between;
 }
 
 .btn-primary,
@@ -609,4 +611,123 @@ nav.navbar.bg-dark {
     border: 1px solid #ccc;
     border-radius: 6px;
   }
+}
+
+/* html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+} */
+
+button.mybtn {
+  display: flex;
+  justify-content: flex-end;
+  background: #dc3545;
+  border-radius: 20px;
+  height: 1px;
+  color: #000;
+
+  border-color: #dc3545;
+}
+/* .alert.alert-danger {
+  margin-right: px;
+  justify-content: space-between;
+} */
+
+/* adjusted the width of the container followed by the margin:- by Prashant:- by Prashant*/
+.container {
+  max-width: 1600px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 1rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+}
+/* adjustment of boxed X sign to single X :- by Prashant*/
+button {
+  border-width: inherit;
 }
