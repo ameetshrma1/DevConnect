@@ -7,18 +7,18 @@ const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 const request = require("request");
 const config = require("config");
-const multer = require("multer");
+// const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./client/public/uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "./client/public/uploads");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 //@routes GET api/profile/me
 // desc Get current Users Profille
@@ -49,7 +49,7 @@ router.get("/me", auth, async (req, res) => {
 router.post(
   "/",
   [
-    upload.single("avatar"),
+    // upload.single("avatar"),
     auth,
     [
       check("status", "Status is required").not().isEmpty(),
@@ -77,21 +77,24 @@ router.post(
       linkedin,
     } = req.body;
 
-    const { avatar } = req.file.avatar;
+    // const { avatar } = req.file.avatar;
 
     //Build profile object
     const profileFields = {};
 
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
-    if (avatar) profileFields.avatar = avatar;
+    // if (avatar) profileFields.avatar = avatar;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+      profileFields.skills = skills
+        .toString()
+        .split(",")
+        .map((skill) => skill.trim());
     }
 
     //Build social Array

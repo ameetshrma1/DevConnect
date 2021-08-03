@@ -5,7 +5,6 @@ export const setAlert =
   (msg: any, alertType: any, Timeout = 5000) =>
   (dispatch: any) => {
     const id = v4();
-    console.log("SETALERT RUNS");
     dispatch({
       type: SET_ALERT,
       payload: { msg, alertType, id },
