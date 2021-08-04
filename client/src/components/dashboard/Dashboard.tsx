@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
-import userEvent from "@testing-library/user-event";
 import { Link } from "react-router-dom";
 import DashboardActions from "./DashboardActions";
 
@@ -14,7 +13,7 @@ const Dashboard = ({
 }: any) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
