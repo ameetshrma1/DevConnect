@@ -4,8 +4,18 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addExperience } from "../../actions/profile";
 
-const AddExperience = (props: any) => {
-  const [formData, setFormData] = useState({
+interface IExperience {
+  company: string;
+  title: string;
+  location: string;
+  from: string;
+  to?: string;
+  current: boolean;
+  description: string;
+}
+
+const AddExperience = ({ addExperience, history }: any) => {
+  const initialData = {
     company: "",
     title: "",
     location: "",
@@ -13,13 +23,21 @@ const AddExperience = (props: any) => {
     to: "",
     current: false,
     description: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialData as IExperience);
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
+  const [toDateDisabled, toggleDisabled] = useState(true);
 
   const { company, title, location, from, to, current, description } = formData;
   const onChange = (event: any) =>
     setFormData({ ...formData, [event.target.name]: event.target.value });
+
+  const handleSubmit = (event: any) => {
+    event.persist();
+    addExperience(formData, history);
+    console.log(formData);
+  };
+
   return (
     <>
       <Fragment>
@@ -73,42 +91,40 @@ const AddExperience = (props: any) => {
               <input
                 type="checkbox"
                 name="current"
-                checked={current}
-                value={current}
-                onChange={(event: any) => {
-                  setFormData({ ...formData, current: !current });
+                onClick={() => {
                   toggleDisabled(!toDateDisabled);
                 }}
               />{" "}
               {""} Current Job
             </p>
           </div>
-          <div className="form-group">
-            <h4>To Date</h4>
-            <input
-              type="date"
-              name="to"
-              value={to}
-              onChange={(event: any) => onChange(event)}
-              disabled={toDateDisabled ? "disabled" : ""}
-            />
-          </div>
+          {toDateDisabled && (
+            <div className="form-group">
+              <h4>To Date</h4>
+              <input
+                type="date"
+                name="to"
+                value={to}
+                onChange={(event: any) => onChange(event)}
+              />
+            </div>
+          )}
           <div className="form-group">
             <textarea
               name="description"
-              //   cols="30"
-              //   rows="5"
+              // cols="30"
+              // rows="5"
               placeholder="Job Description"
               value={description}
               onChange={(event: any) => onChange(event)}
               required
             ></textarea>
           </div>
-          <input type="submit" className="btn btn-primary my-1" />
-          <a className="btn btn-light my-1" href="dashboard.html">
-            Go Back
-          </a>
         </form>
+
+        <button className="btn btn-primary" onClick={handleSubmit}>
+          Submit
+        </button>
       </Fragment>
     </>
   );
