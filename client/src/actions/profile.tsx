@@ -1,7 +1,7 @@
 import axios from "axios";
 import { async } from "q";
 import { setAlert } from "./alert";
-import { GET_PROFILE, PROFILE_ERROR } from "./types";
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
 
 //Get current user profile
 
@@ -64,3 +64,79 @@ export const createProfile =
       });
     }
   };
+// Add Experience
+export const addExperience =
+  (formData: any, history: any) => async (dispatch: any) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const res = await axios.put(
+        "http://localhost:5000/api/profile/experience",
+        formData,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data,
+      });
+
+      dispatch(setAlert("Experience added successfully", "success"));
+      history.push("/dashboard");
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error: any) => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+// Add Education
+export const addEducation =
+  (formData: any, history: any) => async (dispatch: any) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const res = await axios.put(
+        "http://localhost:5000/api/profile/education",
+        formData,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data,
+      });
+
+      dispatch(setAlert("Education added successfully", "success"));
+      history.push("/dashboard");
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error: any) => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+
+function dispatch(arg0: (dispatch: any) => void) {
+  throw new Error("Function not implemented.");
+}
