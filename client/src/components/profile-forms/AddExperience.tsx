@@ -91,8 +91,10 @@ const AddExperience = ({ addExperience, history }: any) => {
               <input
                 type="checkbox"
                 name="current"
+                checked={current}
                 onClick={() => {
                   toggleDisabled(!toDateDisabled);
+                  setFormData({ ...formData, current: !current });
                 }}
               />{" "}
               {""} Current Job

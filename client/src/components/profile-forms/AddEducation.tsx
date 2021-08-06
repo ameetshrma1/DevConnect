@@ -94,6 +94,7 @@ const AddEducation = ({ addEducation, history }: any) => {
                 name="current"
                 onClick={() => {
                   toggleDisabled(!toDateDisabled);
+                  setFormData({ ...formData, current: !current });
                 }}
               />{" "}
               Current School or Bootcamp

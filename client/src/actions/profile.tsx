@@ -145,10 +145,11 @@ export const addExperience =
 
       dispatch({
         type: UPDATE_PROFILE,
-        payload: res.data,
+        payload: res.data.profile,
       });
 
       dispatch(setAlert("Experience added successfully", "success"));
+
       history.push("/dashboard");
     } catch (err) {
       const errors = err.response.data.errors;
@@ -181,10 +182,11 @@ export const addEducation =
 
       dispatch({
         type: UPDATE_PROFILE,
-        payload: res.data,
+        payload: res.data.profile,
       });
 
       dispatch(setAlert("Education added successfully", "success"));
+
       history.push("/dashboard");
     } catch (err) {
       const errors = err.response.data.errors;
