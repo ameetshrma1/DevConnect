@@ -7,6 +7,7 @@ import {
   CLEAR_PROFILE,
   GET_REPOS,
   UPDATE_PROFILE,
+  ACCOUNT_DELETED,
 } from "./types";
 
 //Get current user profile
@@ -48,7 +49,7 @@ export const getProfiles = () => async (dispatch: any) => {
 
 //Get profile by Id
 
-export const getProfileById = (userId: any) => async (dispatch: any) => {
+export const getProfileById = (userId: string) => async (dispatch: any) => {
   try {
     const res = await axios.get(`http://localhost:5000/api/profile/${userId}`);
 
@@ -205,3 +206,69 @@ export const addEducation =
 function dispatch(arg0: (dispatch: any) => void) {
   throw new Error("Function not implemented.");
 }
+
+//Delete experience
+
+export const deleteExperience = (id: string) => async (dispatch: any) => {
+  try {
+    const res = await axios.delete(`api/profile/experience/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Experience Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete Education
+
+export const deleteEducation = (id: string) => async (dispatch: any) => {
+  try {
+    const res = await axios.delete(`api/profile/education/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Education Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Delete Account and Profile
+
+export const deleteAccount = () => async (dispatch: any) => {
+  if (window.confirm("Are you sure ? This cannot be undone!!! ")) {
+    try {
+      const res = await axios.delete(`api/profile/`);
+
+      dispatch({
+        type: CLEAR_PROFILE,
+      });
+      dispatch({
+        type: ACCOUNT_DELETED,
+      });
+
+      dispatch(
+        setAlert("Your Account has been permanently deleted", "success")
+      );
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  }
+};

@@ -150,11 +150,11 @@ router.get("/", async (req, res) => {
 // desc Get profile by user ID
 //@ access Public
 
-router.get("/user/:user_id", async (req, res) => {
+router.get("/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
-    }).populate("user", ["name"]);
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) return res.status(400).json({ msg: "Profile Not Found." });
 
@@ -175,7 +175,7 @@ router.get("/user/:user_id", async (req, res) => {
 router.delete("/", auth, async (req, res) => {
   try {
     //@todo - remmove users posts
-    await Post.remove({ user: req.user.id });
+    await Post.deleteMany({ user: req.user.id });
 
     //Remove Profile
     await Profile.findOneAndRemove({ user: req.user.id });
