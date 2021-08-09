@@ -149,16 +149,62 @@ img {
 }
 /* managed to shift the position and altered the size of the alert tab*/
 .alert {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.8rem;
-  margin: 1rem 0;
+  border-radius: 50px;
   opacity: 0.9;
   background: var(--light-color);
-  color: #333;
-  margin-left: 70%;
-  border-radius: 50px;
+  padding: 0.8rem;
+  display: flex;
+  width: 20%;
   justify-content: space-between;
+
+  position: fixed;
+  animation: show_slide 1s ease forwards;
+}
+
+@keyframes show_slide {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-10%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes hide_slide {
+  0% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.alert-wrapper {
+  padding: 0.8rem;
+  margin: 2rem 0;
+
+  color: #333;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  overflow: auto;
+
+  margin-left: 70%;
 }
 
 .btn-primary,
