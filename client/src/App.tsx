@@ -18,6 +18,7 @@ import CreateProfile from "./components/profile-forms/CreateProfile";
 import EditProfile from "./components/profile-forms/EditProfile";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
+import Posts from "./components/posts/Posts";
 import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
 
@@ -36,7 +37,9 @@ const App = () => {
           <Navbar />
           <Route exact path="/" component={Landing} />
           <section className="container">
-            <Alert />
+            <div className="sidebar">
+              <Alert />
+            </div>
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
@@ -63,6 +66,7 @@ const App = () => {
                 path="/add-education"
                 component={AddEducation}
               />
+              <PrivateRoute exact path="/posts" component={Posts} />
             </Switch>
           </section>
         </Fragment>

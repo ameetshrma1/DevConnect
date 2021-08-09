@@ -127,6 +127,10 @@ const AddExperience = ({ addExperience, history }: any) => {
         <button className="btn btn-primary" onClick={handleSubmit}>
           Submit
         </button>
+
+        <Link to="/dashboard" className="btn btn-light my-1">
+          Go Back
+        </Link>
       </Fragment>
     </>
   );

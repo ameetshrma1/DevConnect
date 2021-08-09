@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addEducation } from "../../actions/profile";
+import { Link } from "react-router-dom";
 
 interface IEducation {
   school: string;
@@ -126,6 +127,10 @@ const AddEducation = ({ addEducation, history }: any) => {
         <button className="btn btn-primary" onClick={handleSubmit}>
           Submit
         </button>
+
+        <Link to="/dashboard" className="btn btn-light my-1">
+          Go Back
+        </Link>
       </Fragment>
     </>
   );

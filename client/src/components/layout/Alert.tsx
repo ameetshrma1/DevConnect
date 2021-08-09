@@ -13,11 +13,13 @@ const Alert = ({ alerts, cancelAlert }: any) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map((alert: IAlert) => (
-    <div key={alert.id} className={`alert alert-${alert.alertType}`}>
-      {alert.msg}
-      <button className="mybtn" onClick={() => cancelAlert(alert.id)}>
-        X
-      </button>
+    <div className="alert-wrapper">
+      <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+        <span className="msg">{alert.msg}</span>
+        <button className="mybtn" onClick={() => cancelAlert(alert.id)}>
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
     </div>
   ));
 
