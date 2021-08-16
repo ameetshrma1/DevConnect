@@ -4,25 +4,36 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }: any) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }: any) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
-      </li>
-      <li>
-        <Link to="/posts">Posts</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">
-          <i className="fas fa-user" />
-          <span className="hide-sm">Dashboard</span>
+        <Link to="/profiles">
+          <i className="fas fa-users"></i> Developers
         </Link>
       </li>
       <li>
+        <Link to="/posts">
+          <i className="far fa-sticky-note"></i> Posts
+        </Link>
+      </li>
+      <li>
+        <Link to="/dashboard">
+          <i className="fas fa-chalkboard-teacher"></i>
+          <span className="hide-sm"> Dashboard</span>
+        </Link>
+      </li>
+
+      <li>
+        <Link to={`/profile/${user._id}`}>
+          <i className="fas fa-user" />
+          <span className="hide-sm"> My Profile</span>
+        </Link>
+      </li>
+
+      <li>
         <Link onClick={logout} to="/login">
-          <i className="fas fa-sign-out-alt" />
-          Logout
+          <i className="fas fa-sign-out-alt" /> Logout
         </Link>
       </li>
     </ul>
@@ -31,13 +42,19 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }: any) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to="/profiles">
+          <i className="fas fa-users"></i> Developers
+        </Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/register">
+          <i className="fas fa-user-plus"></i> Register
+        </Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login">
+          <i className="fas fa-sign-in-alt"></i> Login
+        </Link>
       </li>
     </ul>
   );
