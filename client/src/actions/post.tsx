@@ -16,7 +16,7 @@ import {
 
 export const getPosts = () => async (dispatch: any) => {
   try {
-    const res = await axios.get("api/posts");
+    const res = await axios.get("http://localhost:5000/api/posts");
 
     dispatch({
       type: GET_POSTS,
@@ -34,7 +34,7 @@ export const getPosts = () => async (dispatch: any) => {
 export const addLike = (postId: any) => async (dispatch: any) => {
   try {
     const res = await axios.put(
-      `https://stormy-sierra-23811.herokuapp.com/api/posts/like/${postId}`
+      `http://localhost:5000/api/posts/like/${postId}`
     );
 
     dispatch({
@@ -53,7 +53,7 @@ export const addLike = (postId: any) => async (dispatch: any) => {
 export const removeLike = (postId: any) => async (dispatch: any) => {
   try {
     const res = await axios.put(
-      `https://stormy-sierra-23811.herokuapp.com/api/posts/unlike/${postId}`
+      `http://localhost:5000/api/posts/unlike/${postId}`
     );
 
     dispatch({
@@ -71,9 +71,7 @@ export const removeLike = (postId: any) => async (dispatch: any) => {
 //delete post
 export const deletePost = (postId: any) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(
-      `https://stormy-sierra-23811.herokuapp.com/api/posts/${postId}`
-    );
+    const res = await axios.delete(`http://localhost:5000/api/posts/${postId}`);
 
     dispatch({
       type: DELETE_POST,
@@ -97,7 +95,11 @@ export const addPost = (formData: any) => async (dispatch: any) => {
     },
   };
   try {
-    const res = await axios.post("api/posts", formData, config);
+    const res = await axios.post(
+      "http://localhost:5000/api/posts",
+      formData,
+      config
+    );
 
     dispatch({
       type: ADD_POST,
@@ -117,9 +119,7 @@ export const addPost = (formData: any) => async (dispatch: any) => {
 
 export const getPost = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.get(
-      `https://stormy-sierra-23811.herokuapp.com/api/posts/${id}`
-    );
+    const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
 
     dispatch({
       type: GET_POST,
@@ -143,7 +143,7 @@ export const addComment =
     };
     try {
       const res = await axios.post(
-        `https://stormy-sierra-23811.herokuapp.com/api/posts/comment/${postId}`,
+        `http://localhost:5000/api/posts/comment/${postId}`,
         formData,
         config
       );
@@ -167,7 +167,7 @@ export const deleteComment =
   (postId: any, commentId: any) => async (dispatch: any) => {
     try {
       const res = await axios.delete(
-        `https://stormy-sierra-23811.herokuapp.com/api/posts/comment/${postId}/${commentId}`
+        `http://localhost:5000/api/posts/comment/${postId}/${commentId}`
       );
 
       dispatch({

@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import auth from "../../reducers/auth";
 
-const Navbar = ({
-  auth: { isAuthenticated, loading, user },
-  logout,
-  profile: { profile },
-}: any) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }: any) => {
   const authLinks = (
     <ul>
       <li>
@@ -27,7 +24,7 @@ const Navbar = ({
           <span className="hide-sm"> Dashboard</span>
         </Link>
       </li>
-      {profile !== null && (
+      {isAuthenticated && (
         <li>
           <Link to={user && `/profile/${user._id}`}>
             <i className="fas fa-user" />
@@ -85,7 +82,6 @@ Navbar.propTypes = {
 
 const mapStateToProps = (state: any) => ({
   auth: state.auth,
-  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

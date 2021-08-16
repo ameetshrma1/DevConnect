@@ -14,7 +14,7 @@ import {
 
 export const getCurrentProfile = () => async (dispatch: any) => {
   try {
-    const res = await axios.get("api/profile/me");
+    const res = await axios.get("http://localhost:5000/api/profile/me");
 
     dispatch({
       type: GET_PROFILE,
@@ -33,7 +33,7 @@ export const getCurrentProfile = () => async (dispatch: any) => {
 export const getProfiles = () => async (dispatch: any) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("api/profile/");
+    const res = await axios.get("http://localhost:5000/api/profile/");
 
     dispatch({
       type: GET_PROFILES,
@@ -51,10 +51,8 @@ export const getProfiles = () => async (dispatch: any) => {
 
 export const getProfileById = (userId: string) => async (dispatch: any) => {
   try {
-    const res = await axios.get(
-      `https://stormy-sierra-23811.herokuapp.com/api/profile/${userId}`
-    );
-    console.log(res.data);
+    const res = await axios.get(`http://localhost:5000/api/profile/${userId}`);
+
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -72,7 +70,7 @@ export const getProfileById = (userId: string) => async (dispatch: any) => {
 export const getGithubRepos = (username: any) => async (dispatch: any) => {
   try {
     const res = await axios.get(
-      `https://stormy-sierra-23811.herokuapp.com/api/profile/github/${username}`
+      `http://localhost:5000/api/profile/github/${username}`
     );
 
     dispatch({
@@ -99,7 +97,11 @@ export const createProfile =
         },
       };
 
-      const res = await axios.post("api/profile", formData, config);
+      const res = await axios.post(
+        "http://localhost:5000/api/profile",
+        formData,
+        config
+      );
 
       dispatch({
         type: GET_PROFILE,
@@ -136,7 +138,11 @@ export const addExperience =
         },
       };
 
-      const res = await axios.put("api/profile/experience", formData, config);
+      const res = await axios.put(
+        "http://localhost:5000/api/profile/experience",
+        formData,
+        config
+      );
 
       dispatch({
         type: UPDATE_PROFILE,
@@ -169,7 +175,11 @@ export const addEducation =
         },
       };
 
-      const res = await axios.put("api/profile/education", formData, config);
+      const res = await axios.put(
+        "http://localhost:5000/api/profile/education",
+        formData,
+        config
+      );
 
       dispatch({
         type: UPDATE_PROFILE,
@@ -201,9 +211,7 @@ function dispatch(arg0: (dispatch: any) => void) {
 
 export const deleteExperience = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(
-      `https://stormy-sierra-23811.herokuapp.com/api/profile/experience/${id}`
-    );
+    const res = await axios.delete(`api/profile/experience/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -223,9 +231,7 @@ export const deleteExperience = (id: string) => async (dispatch: any) => {
 
 export const deleteEducation = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(
-      `https://stormy-sierra-23811.herokuapp.com/api/profile/education/${id}`
-    );
+    const res = await axios.delete(`api/profile/education/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,
