@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { getProfileById } from "../../actions/profile";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
-import Experience from "../dashboard/Experience";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
