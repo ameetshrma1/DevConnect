@@ -5,11 +5,14 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  GET_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from "../actions/types";
 
 const initialState = {
   posts: [],
-  post: null,
+  post: null as any,
   loading: true,
   error: {},
 };
@@ -22,6 +25,12 @@ export default function (state = initialState, action: any) {
       return {
         ...state,
         posts: payload,
+        loading: false,
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
         loading: false,
       };
     case ADD_POST:
@@ -48,6 +57,23 @@ export default function (state = initialState, action: any) {
         posts: state.posts.map((post: any) =>
           post._id === payload.postId ? { ...post, likes: payload.likes } : post
         ),
+        loading: false,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: { ...state.post, comments: payload },
+        loading: false,
+      };
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment: any) => comment._id !== payload
+          ),
+        },
         loading: false,
       };
     default: {
