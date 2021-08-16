@@ -28,7 +28,7 @@ const Profile = ({
         <Fragment>
           <Link to="/profiles" className="btn btn-light">
             {" "}
-            Back To Profiles
+            See All Profiles
           </Link>
           {auth.isAuthenticated &&
             auth.loading === false &&
