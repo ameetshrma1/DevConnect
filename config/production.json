@@ -1,5 +1,5 @@
 {
-    "mongoURI" :"mongodb+srv://ameetshrma1:loveFromNepal1@cluster0.b9r11.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    "mongoURI" :"mongodb://localhost/devconnect",
     "jwtSecret": "mysecreattoken",
     "githubClientId" : "d964fe6614fd383582b0",
     "githubSecret" : "5f0277a6efe7da51bd933a30d627beda3b652364"
