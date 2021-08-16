@@ -14,7 +14,7 @@ import {
 
 export const getCurrentProfile = () => async (dispatch: any) => {
   try {
-    const res = await axios.get("http://localhost:5000/api/profile/me");
+    const res = await axios.get("api/profile/me");
 
     dispatch({
       type: GET_PROFILE,
@@ -33,7 +33,7 @@ export const getCurrentProfile = () => async (dispatch: any) => {
 export const getProfiles = () => async (dispatch: any) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("http://localhost:5000/api/profile/");
+    const res = await axios.get("api/profile/");
 
     dispatch({
       type: GET_PROFILES,
@@ -51,7 +51,7 @@ export const getProfiles = () => async (dispatch: any) => {
 
 export const getProfileById = (userId: string) => async (dispatch: any) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/profile/${userId}`);
+    const res = await axios.get(`api/profile/${userId}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -69,9 +69,7 @@ export const getProfileById = (userId: string) => async (dispatch: any) => {
 
 export const getGithubRepos = (username: any) => async (dispatch: any) => {
   try {
-    const res = await axios.get(
-      `http://localhost:5000/api/profile/github/${username}`
-    );
+    const res = await axios.get(`api/profile/github/${username}`);
 
     dispatch({
       type: GET_REPOS,
@@ -97,11 +95,7 @@ export const createProfile =
         },
       };
 
-      const res = await axios.post(
-        "http://localhost:5000/api/profile",
-        formData,
-        config
-      );
+      const res = await axios.post("api/profile", formData, config);
 
       dispatch({
         type: GET_PROFILE,
@@ -138,11 +132,7 @@ export const addExperience =
         },
       };
 
-      const res = await axios.put(
-        "http://localhost:5000/api/profile/experience",
-        formData,
-        config
-      );
+      const res = await axios.put("api/profile/experience", formData, config);
 
       dispatch({
         type: UPDATE_PROFILE,
@@ -175,11 +165,7 @@ export const addEducation =
         },
       };
 
-      const res = await axios.put(
-        "http://localhost:5000/api/profile/education",
-        formData,
-        config
-      );
+      const res = await axios.put("api/profile/education", formData, config);
 
       dispatch({
         type: UPDATE_PROFILE,
