@@ -33,7 +33,9 @@ export const getPosts = () => async (dispatch: any) => {
 //Add Like
 export const addLike = (postId: any) => async (dispatch: any) => {
   try {
-    const res = await axios.put(`api/posts/like/${postId}`);
+    const res = await axios.put(
+      `https://stormy-sierra-23811.herokuapp.com/api/posts/like/${postId}`
+    );
 
     dispatch({
       type: UPDATE_LIKES,
@@ -50,7 +52,9 @@ export const addLike = (postId: any) => async (dispatch: any) => {
 //Remove Like
 export const removeLike = (postId: any) => async (dispatch: any) => {
   try {
-    const res = await axios.put(`api/posts/unlike/${postId}`);
+    const res = await axios.put(
+      `https://stormy-sierra-23811.herokuapp.com/api/posts/unlike/${postId}`
+    );
 
     dispatch({
       type: UPDATE_LIKES,
@@ -67,7 +71,9 @@ export const removeLike = (postId: any) => async (dispatch: any) => {
 //delete post
 export const deletePost = (postId: any) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(`api/posts/${postId}`);
+    const res = await axios.delete(
+      `https://stormy-sierra-23811.herokuapp.com/api/posts/${postId}`
+    );
 
     dispatch({
       type: DELETE_POST,
@@ -111,7 +117,9 @@ export const addPost = (formData: any) => async (dispatch: any) => {
 
 export const getPost = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.get(`api/posts/${id}`);
+    const res = await axios.get(
+      `https://stormy-sierra-23811.herokuapp.com/api/posts/${id}`
+    );
 
     dispatch({
       type: GET_POST,
@@ -135,7 +143,7 @@ export const addComment =
     };
     try {
       const res = await axios.post(
-        `api/posts/comment/${postId}`,
+        `https://stormy-sierra-23811.herokuapp.com/api/posts/comment/${postId}`,
         formData,
         config
       );
@@ -159,7 +167,7 @@ export const deleteComment =
   (postId: any, commentId: any) => async (dispatch: any) => {
     try {
       const res = await axios.delete(
-        `api/posts/comment/${postId}/${commentId}`
+        `https://stormy-sierra-23811.herokuapp.com/api/posts/comment/${postId}/${commentId}`
       );
 
       dispatch({

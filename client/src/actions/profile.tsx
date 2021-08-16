@@ -51,8 +51,10 @@ export const getProfiles = () => async (dispatch: any) => {
 
 export const getProfileById = (userId: string) => async (dispatch: any) => {
   try {
-    const res = await axios.get(`api/profile/${userId}`);
-
+    const res = await axios.get(
+      `https://stormy-sierra-23811.herokuapp.com/api/profile/${userId}`
+    );
+    console.log(res.data);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -69,7 +71,9 @@ export const getProfileById = (userId: string) => async (dispatch: any) => {
 
 export const getGithubRepos = (username: any) => async (dispatch: any) => {
   try {
-    const res = await axios.get(`api/profile/github/${username}`);
+    const res = await axios.get(
+      `https://stormy-sierra-23811.herokuapp.com/api/profile/github/${username}`
+    );
 
     dispatch({
       type: GET_REPOS,
@@ -197,7 +201,9 @@ function dispatch(arg0: (dispatch: any) => void) {
 
 export const deleteExperience = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(`api/profile/experience/${id}`);
+    const res = await axios.delete(
+      `https://stormy-sierra-23811.herokuapp.com/api/profile/experience/${id}`
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -217,7 +223,9 @@ export const deleteExperience = (id: string) => async (dispatch: any) => {
 
 export const deleteEducation = (id: string) => async (dispatch: any) => {
   try {
-    const res = await axios.delete(`api/profile/education/${id}`);
+    const res = await axios.delete(
+      `https://stormy-sierra-23811.herokuapp.com/api/profile/education/${id}`
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
